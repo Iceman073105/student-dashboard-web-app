@@ -26,6 +26,7 @@ export function createAssignment({ userId, title, description, dueDate }) {
     title,
     description: description || "",
     dueDate: dueDate || "",
+    completed: false,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   };
@@ -48,4 +49,20 @@ export function deleteAssignment(id) {
   const all = loadAll();
   const next = all.filter((a) => a.id !== id);
   saveAll(next);
+}
+
+export function toggleAssignmentCompleted(id) {
+  const all = loadAll();
+  const idx = all.findIndex((a) => a.id === id);
+
+  if (idx === -1) throw new Error("Assignment not found");
+
+  all[idx] = {
+    ...all[idx],
+    completed: !all[idx].completed,
+    updatedAt: new Date().toISOString(),
+  };
+
+  saveAll(all);
+  return all[idx];
 }
