@@ -1,16 +1,36 @@
-# React + Vite
+## Running Tests
+<!-- This section explains how to run automated tests for the project -->
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project uses **Vitest** for automated testing.
+<!-- Vitest is the testing framework used to verify parts of the application -->
 
-Currently, two official plugins are available:
+The tests currently verify core functionality in the assignment system, including:
+- Creating an assignment
+- Toggling an assignment’s completed status
+<!-- These describe what the tests are checking -->
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### How to Run Tests
+<!-- Step instructions for someone using the project -->
 
-## React Compiler
+Open a terminal in the project folder and run:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm test
+```
 
-## Expanding the ESLint configuration
+Vitest will automatically find the test files and run them.
+<!-- Explains what happens when the command runs -->
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The results will appear in the terminal showing which tests passed or failed.
+<!-- Explains the output -->
+
+Example output:
+
+```
+✓ should create an assignment object
+✓ should toggle assignment completed status
+
+Test Files  1 passed
+Tests       2 passed
+```
+<!-- Example output helps users understand what success looks like -->
