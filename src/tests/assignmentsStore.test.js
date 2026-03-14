@@ -47,4 +47,15 @@ describe("Assignments Store", () => {
 
     expect(updatedAssignment.completed).toBe(true);
   });
+
+  it("should throw an error when title is empty", () => {
+    expect(() =>
+      createAssignment({
+        userId: "123",
+        title: "   ",
+        description: "Bad input",
+        dueDate: "2026-03-20",
+      })
+    ).toThrow("Assignment title is required.");
+  });
 });
