@@ -19,17 +19,22 @@ export function listAssignments(userId) {
 }
 
 export function createAssignment({ userId, title, description, dueDate }) {
+  if (!title || title.trim() === "") {
+    throw new Error("Assignment title is required.");
+  }
+
   const all = loadAll();
   const item = {
     id: crypto.randomUUID(),
     userId,
-    title,
+    title: title.trim(),
     description: description || "",
     dueDate: dueDate || "",
     completed: false,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   };
+
   all.push(item);
   saveAll(all);
   return item;
@@ -38,9 +43,20 @@ export function createAssignment({ userId, title, description, dueDate }) {
 export function updateAssignment(id, patch) {
   const all = loadAll();
   const idx = all.findIndex((a) => a.id === id);
+
   if (idx === -1) throw new Error("Assignment not found");
 
-  all[idx] = { ...all[idx], ...patch, updatedAt: new Date().toISOString() };
+  if (patch.title !== undefined && patch.title.trim() === "") {
+    throw new Error("Assignment title is required.");
+  }
+
+  all[idx] = {
+    ...all[idx],
+    ...patch,
+    title: patch.title !== undefined ? patch.title.trim() : all[idx].title,
+    updatedAt: new Date().toISOString(),
+  };
+
   saveAll(all);
   return all[idx];
 }
