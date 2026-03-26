@@ -34,3 +34,20 @@ Test Files  1 passed
 Tests       2 passed
 ```
 <!-- Example output helps users understand what success looks like -->
+
+
+
+## Live Deployment
+
+Hosted app:
+https://regal-cascaron-ff677f.netlify.app
+
+## Local Setup
+
+1. Download or clone the project
+2. Open the project folder in VS Code
+3. Open a terminal in the project folder
+4. Install dependencies:
+
+```bash
+npm install
